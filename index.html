@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raj Kumar - Linktree</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        .profile-img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        .bio {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .links {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .links li {
+            margin: 10px;
+            flex: 1 1 200px; /* Adjust width of each link item */
+        }
+        .links a {
+            display: block;
+            padding: 15px 30px;
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            backface-visibility: hidden;
+        }
+        .links a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background-color: rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%) rotate(45deg);
+            z-index: -1;
+            opacity: 0;
+        }
+        .links a:hover::before {
+            opacity: 1;
+            width: 100%;
+            height: 100%;
+        }
+        .links a:hover {
+            color: #fff;
+            background-color: #333;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        /* Button Style */
+        .links a.button {
+            color: #333;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        .links a.button:hover {
+            color: #fff;
+        }
+        /* Icon Style */
+        .icon {
+            margin-right: 10px;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 80%;
+            overflow: auto;
+            text-align: center;
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            color: #666;
+        }
+        .resume-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://i.ibb.co/9qn0hgH/IMG-20240624-214310-729.jpg" alt="Profile Picture" class="profile-img">
+        <h1>Raj Kumar</h1>
+        <p class="bio">Fitness enthusiast | Tech geek | Explorer</p>
+        <ul class="links">
+            <li><a href="https://www.instagram.com/your_instagram_username/" class="button"><i class="fab fa-instagram icon"></i> Instagram</a></li>
+            <li><a href="https://www.facebook.com/your_facebook_username/" class="button"><i class="fab fa-facebook icon"></i> Facebook</a></li>
+            <li><a href="https://api.whatsapp.com/send?phone=your_phone_number" class="button"><i class="fab fa-whatsapp icon"></i> WhatsApp</a></li>
+            <li><a href="#" class="button" onclick="openModal()"><i class="fas fa-file-alt icon"></i> Resume</a></li>
+            <!-- Add more links with icons as needed -->
+        </ul>
+    </div>
+
+    <!-- Modal -->
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Resume</h2>
+            <img src="https://i.ibb.co/xq6LxdB/IMG-20240629-152733.jpg" alt="Resume" class="resume-image">
+            <!-- Add any additional content or description here -->
+            <!-- <p>Insert your resume content here...</p> -->
+            <!-- Example link to a PDF -->
+            <!-- <a href="your_resume.pdf" target="_blank">Download Resume</a> -->
+        </div>
+    </div>
+
+    <script>
+        // Modal functions
+        function openModal() {
+            document.getElementById("resumeModal").style.display = "flex";
+        }
+        
+        function closeModal() {
+            document.getElementById("resumeModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
