@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raj Kumar - Linktree</title>
+    <meta name="description" content="Raj Kumar BGS's Linktree profile featuring links to social media, resume, and more.">
+    <meta name="keywords" content="Raj Kumar, Raj Kumar BGS, Linktree, social media, resume, profile, Instagram, Facebook, WhatsApp">
+    <meta name="author" content="Raj Kumar">
+    <meta property="og:title" content="Raj Kumar BGS - Linktree Profile">
+    <meta property="og:description" content="Raj Kumar BGS's Linktree profile featuring links to social media, resume, and more.">
+    <meta property="og:image" content="https://i.ibb.co/9qn0hgH/IMG-20240624-214310-729.jpg">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Raj Kumar BGS - Linktree Profile">
+    <meta name="twitter:description" content="Raj Kumar BGS's Linktree profile featuring links to social media, resume, and more.">
+    <meta name="twitter:image" content="https://i.ibb.co/9qn0hgH/IMG-20240624-214310-729.jpg">
+    <title>Raj Kumar BGS - Linktree Profile</title>
+    <link rel="canonical" href="https://yourwebsite.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <!-- Font Awesome CDN link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
@@ -14,14 +26,16 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             min-height: 100vh;
         }
         .container {
             text-align: center;
             max-width: 600px;
             width: 90%;
+            margin: auto;
+            padding: 20px 0;
+            flex: 1;
         }
         .profile-img {
             border-radius: 50%;
@@ -30,6 +44,14 @@
             object-fit: cover;
             margin-bottom: 20px;
             animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
         }
         .bio {
             font-size: 16px;
@@ -139,6 +161,13 @@
             border-radius: 10px;
             margin-bottom: 20px;
         }
+        /* Copyright Section */
+        .copyright {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            padding: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -160,12 +189,16 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Resume</h2>
-            <img src="https://i.imghippo.com/files/imbqx1719679871.png" alt="Resume" class="resume-image">
+            <img src="https://i.ibb.co/xq6LxdB/IMG-20240629-152733.jpg" alt="Resume" class="resume-image">
             <!-- Add any additional content or description here -->
             <!-- <p>Insert your resume content here...</p> -->
             <!-- Example link to a PDF -->
             <!-- <a href="your_resume.pdf" target="_blank">Download Resume</a> -->
         </div>
+    </div>
+
+    <div class="copyright">
+        &copy; 2024 Raj Kumar. All rights reserved.
     </div>
 
     <script>
