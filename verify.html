@@ -25,6 +25,15 @@
 <p id="result"></p>
 
 <script>
+    const secretKey = "mySecretKey"; // Use the same secret key as in the generator
+
+    function xorEncryptDecrypt(input, key) {
+        const keyLength = key.length;
+        return input.split('').map((char, index) => {
+            return String.fromCharCode(char.charCodeAt(0) ^ key.charCodeAt(index % keyLength));
+        }).join('');
+    }
+
     function getQueryParams() {
         const urlParams = new URLSearchParams(window.location.search);
         return {
@@ -36,10 +45,11 @@
     function verifyPassword() {
         const { url, code } = getQueryParams();
         const enteredPassword = document.getElementById('password').value;
-        const encodedPassword = btoa(enteredPassword);
+        const encodedPassword = btoa(xorEncryptDecrypt(enteredPassword, secretKey));
 
         if (encodedPassword === code) {
-            window.location.href = url;
+            const decodedUrl = xorEncryptDecrypt(atob(url), secretKey);
+            window.location.href = decodedUrl;
         } else {
             document.getElementById('result').innerText = "Incorrect password. Please try again.";
         }
