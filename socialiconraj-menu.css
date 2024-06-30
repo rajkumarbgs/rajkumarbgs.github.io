@@ -1,0 +1,46 @@
+/* Social Icons Section */
+        .socialiconraj-menu ul {
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .socialiconraj-menu ul li {
+            list-style: none;
+            margin: 0 10px;
+        }
+        .socialiconraj-menu ul li .fab {
+            font-size: 20px;
+            line-height: 50px;
+            transition: .3s;
+            color: #000;
+        }
+        .socialiconraj-menu ul li .fab:hover {
+            color: #fff;
+        }
+        .socialiconraj-menu ul li a {
+            position: relative;
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff;
+            text-align: center;
+            transition: .6s;
+            box-shadow: 0 5px 4px rgba(0, 0, 0, .5);
+        }
+        .socialiconraj-menu ul li a:hover {
+            transform: translate(0, -10%);
+        }
+        .socialiconraj-menu ul li:nth-child(1) a:hover {
+            background-color: rgba(0, 0, 0, 0.829);
+        }
+        .socialiconraj-menu ul li:nth-child(2) a:hover {
+            background-color: #E4405F;
+        }
+        .socialiconraj-menu ul li:nth-child(3) a:hover {
+            background-color: #0077b5;
+        }
+        .socialiconraj-menu ul li:nth-child(4) a:hover {
+            background-color: #000;
+        }
