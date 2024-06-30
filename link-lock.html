@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Link Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Protected Link Verification</h2>
+<label for="password">Enter Password:</label>
+<input type="password" id="password" required><br>
+<button onclick="verifyPassword()">Submit</button>
+
+<p id="result"></p>
+
+<script>
+    function getQueryParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return {
+            url: urlParams.get('url'),
+            code: urlParams.get('code')
+        };
+    }
+
+    function verifyPassword() {
+        const { url, code } = getQueryParams();
+        const enteredPassword = document.getElementById('password').value;
+        const encodedPassword = btoa(enteredPassword);
+
+        if (encodedPassword === code) {
+            window.location.href = url;
+        } else {
+            document.getElementById('result').innerText = "Incorrect password. Please try again.";
+        }
+    }
+</script>
+
+</body>
+</html>
