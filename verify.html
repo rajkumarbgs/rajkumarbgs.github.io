@@ -80,12 +80,11 @@
 </div>
 
 <div id="iframeContainer">
-    <iframe id="protectedIframe" onerror="handleIframeError()"></iframe>
+    <iframe id="protectedIframe"></iframe>
 </div>
 
 <script>
     const secretKey = "mySecretKey"; // Use the same secret key as in the generator
-    let decodedUrl = "";
 
     function xorEncryptDecrypt(input, key) {
         const keyLength = key.length;
@@ -98,17 +97,18 @@
         const urlParams = new URLSearchParams(window.location.search);
         return {
             url: urlParams.get('url'),
-            code: urlParams.get('code')
+            code: urlParams.get('code'),
+            display: urlParams.get('display')
         };
     }
 
     function verifyPassword() {
-        const { url, code } = getQueryParams();
+        const { url, code, display } = getQueryParams();
         const enteredPassword = document.getElementById('password').value;
         const encodedPassword = btoa(xorEncryptDecrypt(enteredPassword, secretKey));
 
         if (encodedPassword === code) {
-            decodedUrl = xorEncryptDecrypt(atob(url), secretKey);
+            const decodedUrl = xorEncryptDecrypt(atob(url), secretKey);
             console.log('Decoded URL:', decodedUrl); // Debugging line to check the decoded URL
 
             // Check if the URL is a Google Drive folder
@@ -120,23 +120,20 @@
                 document.getElementById('protectedIframe').src = decodedUrl;
             }
 
-            document.getElementById('passwordContainer').style.display = 'none';
-            document.getElementById('iframeContainer').style.display = 'block';
+            if (display === 'iframe') {
+                document.getElementById('passwordContainer').style.display = 'none';
+                document.getElementById('iframeContainer').style.display = 'block';
+            } else {
+                window.location.href = decodedUrl;
+            }
         } else {
             document.getElementById('result').innerText = "Incorrect password. Please try again.";
         }
     }
 
-    function handleIframeError() {
-        if (decodedUrl) {
-            window.open(decodedUrl, '_blank');
-            document.getElementById('iframeContainer').innerHTML = '<p style="color:red;text-align:center;">Failed to load the URL in iframe. Opening in a new window...</p>';
-        }
-    }
-
     window.onload = function() {
-        const { url, code } = getQueryParams();
-        if (url && code) {
+        const { url, code, display } = getQueryParams();
+        if (url && code && display) {
             document.getElementById('passwordContainer').style.display = 'block';
         } else {
             document.getElementById('errorContainer').style.display = 'block';
