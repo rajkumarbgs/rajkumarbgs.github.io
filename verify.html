@@ -108,6 +108,7 @@
 
         if (encodedPassword === code) {
             const decodedUrl = xorEncryptDecrypt(atob(url), secretKey);
+            console.log('Decoded URL:', decodedUrl); // Debugging line to check the decoded URL
 
             // Check if the URL is a Google Drive folder
             const googleDriveFolderMatch = decodedUrl.match(/drive\.google\.com\/drive\/folders\/([a-zA-Z0-9_-]+)/);
