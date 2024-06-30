@@ -76,7 +76,7 @@
 </div>
 
 <div id="errorContainer">
-    <h2>Error: Protected link parameters are missing.</h2>
+    <h2>Error: Protected link parameters are missing or expired.</h2>
 </div>
 
 <div id="iframeContainer">
@@ -98,14 +98,20 @@
         return {
             url: urlParams.get('url'),
             code: urlParams.get('code'),
-            display: urlParams.get('display')
+            display: urlParams.get('display'),
+            expires: urlParams.get('expires')
         };
     }
 
     function verifyPassword() {
-        const { url, code, display } = getQueryParams();
+        const { url, code, display, expires } = getQueryParams();
         const enteredPassword = document.getElementById('password').value;
         const encodedPassword = btoa(xorEncryptDecrypt(enteredPassword, secretKey));
+
+        if (expires !== 'none' && Date.now() > parseInt(expires)) {
+            document.getElementById('result').innerText = "The link has expired.";
+            return;
+        }
 
         if (encodedPassword === code) {
             const decodedUrl = xorEncryptDecrypt(atob(url), secretKey);
@@ -120,25 +126,22 @@
                 document.getElementById('protectedIframe').src = decodedUrl;
             }
 
-            if (display === 'iframe') {
-                document.getElementById('passwordContainer').style.display = 'none';
-                document.getElementById('iframeContainer').style.display = 'block';
-            } else {
-                window.location.href = decodedUrl;
-            }
+            document.getElementById('passwordContainer').style.display = 'none';
+            document.getElementById('iframeContainer').style.display = 'block';
         } else {
-            document.getElementById('result').innerText = "Incorrect password. Please try again.";
+            document.getElementById('result').innerText = "Incorrect password.";
         }
     }
 
+    // Show password prompt or error on page load based on query parameters
     window.onload = function() {
-        const { url, code, display } = getQueryParams();
-        if (url && code && display) {
+        const { url, code, expires } = getQueryParams();
+        if (url && code && (expires === 'none' || Date.now() <= parseInt(expires))) {
             document.getElementById('passwordContainer').style.display = 'block';
         } else {
             document.getElementById('errorContainer').style.display = 'block';
         }
-    }
+    };
 </script>
 
 </body>
