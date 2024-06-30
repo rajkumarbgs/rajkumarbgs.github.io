@@ -22,14 +22,57 @@
   <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="ZqRViqUDjm1vSuxR-aCHeAXWXWBKznapbngQCJ5R7ws" />
     <link rel="stylesheet" href="./style.css">
-    
+    <link rel="stylesheet" href="./socialiconraj-menu.css">
+   <link rel="stylesheet" href="./share.css">
+   <link rel="stylesheet" href="./glow image.css">
         
 </head>
 <body>
     <div class="container">
-        <img src="https://i.ibb.co/9qn0hgH/IMG-20240624-214310-729.jpg" alt="Profile Picture" class="profile-img">
+      
+          <div class="share-wrapper">
+        <i class="fa fa-share-alt share" id="shareButton"></i>
+        <ul class="social" id="shareMenu">
+            <li><a href="#" onclick="share('whatsapp')" title="Share on WhatsApp"><i class="fab fa-whatsapp whatsapp"></i></a></li>
+            <li><a href="#" onclick="share('facebook')" title="Share on Facebook"><i class="fab fa-facebook facebook"></i></a></li>
+            <li><a href="#" onclick="share('instagram')" title="Share on Instagram"><i class="fab fa-instagram instagram"></i></a></li>
+            <li><a href="#" onclick="share('email')" title="Share via Email"><i class="fas fa-envelope email"></i></a></li>
+            <li><a href="#" onclick="share('copy')" title="Copy Link"><i class="fas fa-link copy"></i></a></li>
+        </ul>
+    </div>
+
+      
+      
+      
+      <div class="center-box-custom">
+        <!-- START Box -->
+        <div class="animated-border-box-glow-custom"></div>
+        <div class="animated-border-box-custom">
+          <!-- Inside the Box -->
+          <div class="image-container-custom">
+            <img src="https://i.ibb.co/9qn0hgH/IMG-20240624-214310-729.jpg" alt="Profile Picture" class="profile-img-custom">
+          </div>
+        </div>
+        <!-- END -->
+      </div>
+      
+      
         <h1>Raj Kumar</h1>
-        <p class="bio">Fitness enthusiast | Tech geek | Explorer</p>
+        <p class="bio">I am Raj Kumar, a motivated fresher
+        skilled in computer applications and
+        digital marketing. Eager to contribute
+        my creativity and dedication to your
+        organization</p>
+       <!-- Social Icons -->
+       <div class="socialiconraj-menu">
+         <ul>
+           <li><a href="https://github.com/sanketbodke" target="blank"><i class="fab fa-github"></i></a></li>
+           <li><a href="https://www.instagram.com/imsanketbodke/" target="blank"><i class="fab fa-instagram"></i></a></li>
+           <li><a href="https://www.linkedin.com/in/sanket-bodake-995b5b205/" target="blank"><i class="fab fa-linkedin-in"></i></a></li>
+           <li><a href="https://codepen.io/sanketbodke" target="blank"><i class="fab fa-codepen"></i></a></li>
+         </ul>
+       </div>
+       
         <ul class="links">
             <li><a href="https://www.instagram.com/your_instagram_username/" class="button"><i class="fab fa-instagram icon"></i> Instagram</a></li>
             <li><a href="https://www.facebook.com/your_facebook_username/" class="button"><i class="fab fa-facebook icon"></i> Facebook</a></li>
@@ -37,6 +80,8 @@
             <li><a href="#" class="button" onclick="openModal()"><i class="fas fa-file-alt icon"></i> Resume</a></li>
             <!-- Add more links with icons as needed -->
         </ul>
+        
+        
     </div>
 
     <!-- Modal -->
@@ -46,6 +91,8 @@
             <h2>Resume</h2>
             <img src="https://i.imghippo.com/files/imbqx1719679871.png" alt="Resume" class="resume-image">
             <!-- Add any additional content or description here -->
+           
+ <!-- Add any additional content or description here -->
             <!-- <p>Insert your resume content here...</p> -->
             <!-- Example link to a PDF -->
             <!-- <a href="your_resume.pdf" target="_blank">Download Resume</a> -->
@@ -66,5 +113,45 @@
             document.getElementById("resumeModal").style.display = "none";
         }
     </script>
+     
+    <script>
+    document.getElementById('shareButton').addEventListener('click', function() {
+        this.classList.toggle('active');
+        document.getElementById('shareMenu').classList.toggle('active');
+    });
+
+    function share(platform) {
+        var url = encodeURIComponent(window.location.href);
+        var text = encodeURIComponent("Check out Raj Kumar's amazing profile! A fitness enthusiast, tech geek, and explorer sharing valuable insights and experiences.");
+        var shareUrl = '';
+
+        switch (platform) {
+            case 'whatsapp':
+                shareUrl = 'https://api.whatsapp.com/send?text=' + text + '%20' + url;
+                break;
+            case 'facebook':
+                shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url + '&quote=' + text;
+                break;
+            case 'instagram':
+                alert('Instagram does not support direct URL sharing via web. Please share manually.');
+                return;
+            case 'email':
+                shareUrl = 'mailto:?subject=' + text + '&body=Check out Raj Kumar\'s profile: ' + url;
+                break;
+            case 'copy':
+                navigator.clipboard.writeText(window.location.href).then(function() {
+                    alert('Link copied to clipboard!');
+                }, function(err) {
+                    alert('Failed to copy link: ', err);
+                });
+                return;
+            default:
+                return;
+        }
+
+        window.open(shareUrl, '_blank');
+    }
+</script>
+
 </body>
 </html>
