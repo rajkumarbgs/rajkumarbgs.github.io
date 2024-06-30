@@ -1,0 +1,116 @@
+  /* Variables */
+        :root {
+            --share-button-height: 30px; /* Adjust height */
+            --share-button-width: 30px; /* Adjust width */
+            --share-button-line-height: 30px; /* Adjust line height */
+            --share-button-color: #FFF;
+            --share-button-bg-color: #F36B21;
+            --share-button-transition-time: 0.4s;
+            --share-button-whatsapp-color: #25D366;
+            --share-button-facebook-color: #3A589E;
+            --share-button-instagram-color: #305C85;
+            --share-button-email-color: #EA4335;
+            --share-button-copy-color: #000;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .share-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .share-wrapper .share {
+            width: var(--share-button-width);
+            height: var(--share-button-height);
+            border-radius: 50%;
+            color: var(--share-button-color);
+            background-color: var(--share-button-bg-color);
+            text-align: center;
+            line-height: var(--share-button-line-height);
+            font-size: 20px; /* Adjust icon size */
+            cursor: pointer;
+            transition: background-color var(--share-button-transition-time);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, .28);
+        }
+
+        .share-wrapper .share.active {
+            background-color: #000;
+        }
+
+        .share-wrapper .share.active::before {
+            content: "\f00d"; /* Font Awesome close icon */
+        }
+
+        .share-wrapper .social {
+            position: absolute;
+            top: calc(var(--share-button-height) + 10px); /* Adjust vertical position */
+            right: 0;
+            opacity: 0;
+            visibility: hidden;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            transform: translateX(-100%);
+            transition: visibility var(--share-button-transition-time), opacity var(--share-button-transition-time), transform var(--share-button-transition-time);
+            background-color: #E7D5D575;
+            padding: 8px;
+            border-radius: 50px;
+            box-shadow:;
+        }
+
+        .share-wrapper .social.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .share-wrapper .social li {
+            width: var(--share-button-width);
+            height: var(--share-button-height);
+            border-radius: 50%;
+            color: var(--share-button-color);
+            background-color: #FFF;
+            text-align: center;
+            line-height: var(--share-button-line-height);
+            font-size: 20px; /* Adjust icon size */
+            cursor: pointer;
+            margin-bottom: 10px; /* Adjust spacing between icons */
+            box-shadow: .5px .87px 4px 0 rgba(0, 0, 0, .3);
+            transition: all var(--share-button-transition-time);
+            transform: scale(0.8); /* Adjust icon scale on hover */
+        }
+
+        .share-wrapper .social li .whatsapp {
+            color: var(--share-button-whatsapp-color);
+        }
+
+        .share-wrapper .social li .facebook {
+            color: var(--share-button-facebook-color);
+        }
+
+        .share-wrapper .social li .instagram {
+            color: var(--share-button-instagram-color);
+        }
+
+        .share-wrapper .social li .email {
+            color: var(--share-button-email-color);
+        }
+
+        .share-wrapper .social li .copy {
+            color: var(--share-button-copy-color);
+        }
+
+        .share-wrapper .social li:hover {
+            transform: scale(1);
+        }
