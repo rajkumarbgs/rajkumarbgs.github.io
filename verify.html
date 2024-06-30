@@ -118,15 +118,18 @@
 
             // Check if the URL is a Google Drive folder
             const googleDriveFolderMatch = decodedUrl.match(/drive\.google\.com\/drive\/folders\/([a-zA-Z0-9_-]+)/);
-            if (googleDriveFolderMatch) {
-                const folderId = googleDriveFolderMatch[1];
-                document.getElementById('protectedIframe').src = `https://drive.google.com/embeddedfolderview?id=${folderId}#list`;
+            if (display === 'iframe') {
+                if (googleDriveFolderMatch) {
+                    const folderId = googleDriveFolderMatch[1];
+                    document.getElementById('protectedIframe').src = `https://drive.google.com/embeddedfolderview?id=${folderId}#list`;
+                } else {
+                    document.getElementById('protectedIframe').src = decodedUrl;
+                }
+                document.getElementById('passwordContainer').style.display = 'none';
+                document.getElementById('iframeContainer').style.display = 'block';
             } else {
-                document.getElementById('protectedIframe').src = decodedUrl;
+                window.location.href = decodedUrl;
             }
-
-            document.getElementById('passwordContainer').style.display = 'none';
-            document.getElementById('iframeContainer').style.display = 'block';
         } else {
             document.getElementById('result').innerText = "Incorrect password.";
         }
