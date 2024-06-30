@@ -8,6 +8,15 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+        }
+        #passwordContainer, #errorContainer {
+            display: none;
         }
         input, button {
             padding: 10px;
@@ -30,12 +39,16 @@
 </head>
 <body>
 
-<h2>Protected Link Verification</h2>
 <div id="passwordContainer">
+    <h2>Protected Link Verification</h2>
     <label for="password">Enter Password:</label>
     <input type="password" id="password" required><br>
     <button onclick="verifyPassword()">Submit</button>
     <p id="result"></p>
+</div>
+
+<div id="errorContainer">
+    <h2>Error: Protected link parameters are missing.</h2>
 </div>
 
 <div id="iframeContainer">
@@ -72,6 +85,15 @@
             document.getElementById('iframeContainer').style.display = 'block';
         } else {
             document.getElementById('result').innerText = "Incorrect password. Please try again.";
+        }
+    }
+
+    window.onload = function() {
+        const { url, code } = getQueryParams();
+        if (url && code) {
+            document.getElementById('passwordContainer').style.display = 'block';
+        } else {
+            document.getElementById('errorContainer').style.display = 'block';
         }
     }
 </script>
