@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Link Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        input, select {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #resultContainer {
+            margin-top: 20px;
+        }
+        #resultContainer p {
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+        #resultContainer button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Protected Link Generator</h2>
+    <input type="text" id="url" placeholder="Enter URL" required>
+    <input type="password" id="password" placeholder="Set Password" required>
+    <select id="displayOption">
+        <option value="iframe">Open in iframe</option>
+        <option value="direct">Open directly</option>
+    </select>
+    <select id="expiration">
+        <option value="none">No Expiration</option>
+        <option value="2">Expire in 2 Minutes</option>
+        <option value="5">Expire in 5 Minutes</option>
+        <option value="10">Expire in 10 Minutes</option>
+    </select>
+    <button onclick="generateProtectedLink()">Generate Protected Link</button>
+    <div id="resultContainer" style="display: none;">
+        <p id="generatedLink"></p>
+        <button onclick="copyToClipboard()">Copy to Clipboard</button>
+        <button onclick="openLink()">Open Link</button>
+    </div>
+</div>
+
+<script>
+    const secretKey = "mySecretKey"; // Same secret key for encryption
+
+    function xorEncryptDecrypt(input, key) {
+        const keyLength = key.length;
+        return input.split('').map((char, index) => {
+            return String.fromCharCode(char.charCodeAt(0) ^ key.charCodeAt(index % keyLength));
+        }).join('');
+    }
+
+    function generateProtectedLink() {
+        const url = document.getElementById('url').value;
+        const password = document.getElementById('password').value;
+        const displayOption = document.getElementById('displayOption').value;
+        const expiration = document.getElementById('expiration').value;
+
+        if (url && password) {
+            const encryptedUrl = btoa(xorEncryptDecrypt(url, secretKey));
+            const encodedPassword = btoa(xorEncryptDecrypt(password, secretKey));
+            const timestamp = expiration === 'none' ? 'none' : (Date.now() + expiration * 60000).toString();
+            const protectedLink = `${window.location.origin}/verify.html?url=${encryptedUrl}&code=${encodedPassword}&display=${displayOption}&expires=${timestamp}`;
+            document.getElementById('generatedLink').innerText = protectedLink;
+            document.getElementById('resultContainer').style.display = 'block';
+        } else {
+            alert("Please enter both URL and password.");
+        }
+    }
+
+    function copyToClipboard() {
+        const link = document.getElementById('generatedLink').innerText;
+        navigator.clipboard.writeText(link).then(() => {
+            alert("Link copied to clipboard!");
+        }).catch(err => {
+            alert("Failed to copy link: " + err);
+        });
+    }
+
+    function openLink() {
+        const link = document.getElementById('generatedLink').innerText;
+        window.open(link, '_blank');
+    }
+</script>
+
+</body>
+</html>
