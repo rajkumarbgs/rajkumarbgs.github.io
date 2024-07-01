@@ -6,27 +6,30 @@
     <title>Protected Link Generator</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f0f2f5;
             margin: 0;
+            padding: 20px;
         }
         .container {
             background: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            width: 100%;
+            max-width: 400px;
             text-align: center;
         }
         .container h2 {
             margin-bottom: 20px;
             color: #007bff;
+            font-size: 24px;
         }
-        input, select {
+        input, select, button {
             width: calc(100% - 20px);
             padding: 12px;
             margin-bottom: 15px;
@@ -35,11 +38,9 @@
             font-size: 16px;
         }
         button {
-            padding: 12px 20px;
             background: #007bff;
             color: white;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
             margin-top: 10px;
@@ -56,6 +57,18 @@
         }
         #resultContainer button {
             margin-top: 10px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            input, select, button {
+                padding: 10px;
+                font-size: 14px;
+            }
+            button {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -78,8 +91,11 @@
     <button onclick="generateProtectedLink()">Generate Protected Link</button>
     <div id="resultContainer" style="display: none;">
         <p id="generatedLink"></p>
-        <button onclick="copyToClipboard()">Copy to Clipboard</button>
+        <button onclick="copyToClipboard('generatedLink')">Copy to Clipboard</button>
         <button onclick="openLink()">Open Link</button>
+        <button onclick="shortenURL()">Shorten URL</button>
+        <p id="shortenedLink"></p>
+        <button onclick="copyToClipboard('shortenedLink')">Copy Shortened URL</button>
     </div>
 </div>
 
@@ -111,18 +127,43 @@
         }
     }
 
-    function copyToClipboard() {
-        const link = document.getElementById('generatedLink').innerText;
-        navigator.clipboard.writeText(link).then(() => {
-            alert("Link copied to clipboard!");
+    function copyToClipboard(elementId) {
+        const element = document.getElementById(elementId);
+        if (element.innerText === '') {
+            alert('No URL to copy');
+            return;
+        }
+        navigator.clipboard.writeText(element.innerText).then(() => {
+            alert('URL copied to clipboard!');
         }).catch(err => {
-            alert("Failed to copy link: " + err);
+            alert('Failed to copy URL: ' + err);
         });
     }
 
     function openLink() {
         const link = document.getElementById('generatedLink').innerText;
         window.open(link, '_blank');
+    }
+
+    async function shortenURL() {
+        const generatedLink = document.getElementById('generatedLink').innerText;
+        const customCode = `rajkumarbgs-${Date.now().toString(36)}`;
+
+        if (generatedLink === '') {
+            alert('No generated link to shorten');
+            return;
+        }
+
+        let apiUrl = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(generatedLink)}&alias=${encodeURIComponent(customCode)}`;
+
+        try {
+            const response = await fetch(apiUrl);
+            const shortUrl = await response.text();
+            document.getElementById('shortenedLink').innerText = shortUrl;
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to shorten URL. Please try again.');
+        }
     }
 </script>
 
