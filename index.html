@@ -15,144 +15,855 @@
     <meta name="twitter:title" content="Raj Kumar BGS - Linktree Profile">
     <meta name="twitter:description" content="Raj Kumar BGS's Linktree profile featuring links to social media, resume, and more.">
     <meta name="twitter:image" content="https://i.ibb.co/9qn0hgH/IMG-20240624-214310-729.jpg">
-    <title>Raj Kumar BGS - Linktree Profile</title>
     <link rel="canonical" href="https://rajkumarbgs.github.io">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <meta name="robots" content="index, follow">
-    <meta name="google-site-verification" content="ZqRViqUDjm1vSuxR-aCHeAXWXWBKznapbngQCJ5R7ws" />
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./socialiconraj-menu.css">
-   <link rel="stylesheet" href="./share.css">
-   <link rel="stylesheet" href="./glow image.css">
+    <title>Raj Kumar | Tech & Digital Strategy Portfolio | Select Me!</title>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style id="dynamic-styles">
+        /* Dynamic CSS Variables - Updated by JavaScript for a fresh look every time */
+        :root {
+            /* Default Fallback Colors (Will be replaced by JS) */
+            --primary-color: #0077b6; /* Core Action Color (Blue) */
+            --secondary-color: #48cae4; /* Accent Color (Teal) */
+            --text-color: #1c2e36; /* Dark Text */
+            --bg-light: #f9fcff; /* Very Light Background */
+            --bg-dark: #122938; /* Dark Navy Background */
+            --highlight-gradient: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            --progress-gradient: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.08); /* Softer Shadow */
+            --shadow-lift: 0 30px 60px rgba(0, 0, 0, 0.35); 
+            --border-radius-xl: 18px; 
+        }
+
+        /* 1. Global Styles & Reset */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden !important; 
+            scroll-behavior: smooth; 
+        }
+
+        .container {
+            max-width: 1200px; 
+            margin: 0 auto;
+            padding: 0 30px; 
+        }
+
+        /* Utility Class for Buttons */
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 2. Scroll Progress Bar (Unchanged) */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px; 
+            background: var(--progress-gradient); 
+            z-index: 10000;
+            transition: width 0.1s linear, background 0.4s ease;
+        }
+
+        /* 3. Navigation (Clean) */
+        .navbar {
+            background-color: transparent; 
+            padding: 25px 0;
+            position: fixed; 
+            width: 100%;
+            top: 0;
+            transition: all 0.4s ease-in-out;
+            z-index: 999;
+        }
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(5px); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.6em;
+            font-weight: 900; 
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            color: #ffffff; 
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+            transition: color 0.4s ease;
+        }
+        .navbar.scrolled .logo { 
+            color: var(--text-color); 
+            text-shadow: none; 
+        }
         
+        /* 4. Hero Section (Unchanged) */
+        .hero-section {
+            padding: 180px 0 120px; 
+            background: var(--bg-dark); 
+            color: white;
+            min-height: 100vh;
+            display: flex; 
+            align-items: center;
+        }
+        
+        .hero-container {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 50px;
+        }
+
+        .hero-content { max-width: 55%; }
+        .hero-content h1 { 
+            font-size: clamp(3.5em, 6vw, 5.5em);
+            margin: 0 0 10px; 
+            line-height: 1;
+            font-weight: 900;
+        }
+        
+        .hero-role-text {
+            font-weight: 500; 
+            font-size: clamp(1.2em, 1.8vw, 1.8em);
+            color: var(--secondary-color); 
+            margin-top: 5px; 
+            margin-bottom: 30px;
+        }
+        .highlight { color: var(--secondary-color); font-weight: 900; }
+        
+        .profile-image-container { 
+            max-width: 400px; 
+            width: 100%;
+            aspect-ratio: 1 / 1; 
+            border-radius: 50%; 
+            overflow: hidden;
+            border: 5px solid var(--secondary-color); 
+            box-shadow: var(--shadow-lift); 
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            object-position: center top; 
+            transition: transform 0.6s ease;
+        }
+        .profile-image:hover { transform: scale(1.08) rotate(2deg); filter: brightness(1.1); }
+
+
+        /* 5. Sections and Headings (Refined) (Unchanged) */
+        .section { padding: 120px 0; text-align: center; }
+        .section h2 { 
+            font-size: clamp(2.2em, 3.5vw, 3em);
+            margin-bottom: 60px; 
+            font-weight: 900; 
+            position: relative;
+        }
+        .section h2::after { 
+            content: ''; 
+            width: 80px; 
+            height: 4px; 
+            background: var(--primary-color); 
+            position: absolute; 
+            bottom: -15px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            border-radius: 2px; 
+        }
+        
+        /* About Text Card (Unchanged) */
+        .about-text { 
+            max-width: 950px; 
+            margin: 0 auto; 
+            font-size: clamp(0.95em, 1.2vw, 1.1em);
+            background-color: #ffffff; 
+            padding: 40px; 
+            border-radius: var(--border-radius-xl); 
+            box-shadow: var(--shadow-soft); 
+            border-left: 6px solid var(--primary-color); 
+            text-align: left;
+        }
+        .about-text p:last-child {
+            font-weight: 700; 
+            color: var(--primary-color);
+            margin-bottom: 0;
+            margin-top: 30px;
+        }
+
+        /* 6. Projects Section (NEW) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .project-card {
+            background: #ffffff;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        .project-content {
+            padding: 25px;
+        }
+        .project-content h3 {
+            font-size: 1.4em;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .project-tag {
+            display: inline-block;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: white;
+            background: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* 7. Skills Section (Unchanged) */
+        .skill-list {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.6); 
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px); 
+        }
+        .skill-item { margin-bottom: 30px; }
+        .skill-item h4 {
+            font-weight: 600;
+            font-size: 1em;
+            color: var(--text-color);
+            display: flex;
+            justify-content: space-between;
+        }
+        .progress-bar-container {
+            height: 8px; 
+            background-color: rgba(0, 0, 0, 0.08); 
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0; 
+            background: var(--highlight-gradient);
+            transition: width 1.5s ease-out; 
+            border-radius: 4px;
+        }
+
+        /* 8. Services/Tabs Section (Unchanged) */
+        .tabs-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-soft);
+            padding: 40px;
+            text-align: left;
+        }
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.05em;
+            font-weight: 700;
+            color: #777;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tab-button.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        .tab-content { display: none; padding: 20px 0; line-height: 1.7; }
+        .tab-content.active { display: block; }
+        .service-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .service-point i {
+            font-size: 1.1em;
+            color: var(--secondary-color);
+            margin-right: 15px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+        .tab-content h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.5em;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        /* 9. Connect/Social Links (Unchanged) */
+        .social-links a { 
+            font-size: 2.8em;
+            margin: 0 18px; 
+            color: var(--text-color); 
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-links a:hover, .social-links a:focus {
+            color: var(--primary-color); 
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        /* 10. Sticky CTA Button & Scroll-to-Top (NEW) */
+        .sticky-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .sticky-cta a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 1.4em;
+            color: white;
+            background: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .sticky-cta a:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+        #scrollToTopBtn {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            pointer-events: none; /* Allows click-through when hidden */
+        }
+        #scrollToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* 11. Modal Styles (NEW Contact Form Modal) */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 10000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.4); 
+            backdrop-filter: blur(3px);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; 
+            padding: 40px;
+            border-radius: var(--border-radius-xl);
+            border-top: 8px solid var(--primary-color);
+            max-width: 500px;
+            box-shadow: var(--shadow-lift);
+            position: relative;
+            animation: fadeInModal 0.3s ease-out;
+        }
+        @keyframes fadeInModal {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 36px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close-btn:hover, .close-btn:focus {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .modal-content h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        .modal-content label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .modal-content input, .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+        }
+        .modal-content textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* 12. Responsive Design (Mobile adjustments) (Updated for Project Cards) */
+        @media (max-width: 992px) {
+            .hero-section { padding: 120px 0 60px; }
+            .hero-container { flex-direction: column; text-align: center; } 
+            .hero-content { max-width: 100%; order: 2; margin-top: 30px; }
+            .hero-content h1 { font-size: 3.5em; }
+            .profile-image-container { max-width: 250px; order: 1; border-width: 4px; }
+            .section { padding: 80px 0; }
+            .about-text { text-align: left; padding: 30px; } /* Kept text left for better reading */
+            .skill-list, .tabs-container { padding: 30px 20px; }
+            .tabs-container { padding: 20px; }
+            .tab-buttons { flex-direction: column; border-bottom: none; }
+            .tab-button { border-bottom: none; border-left: 3px solid transparent; margin: 5px 0; justify-content: flex-start; padding: 10px 15px; }
+            .tab-button.active { border-bottom: none; border-left: 3px solid var(--primary-color); }
+            
+            .projects-grid { grid-template-columns: 1fr; }
+            .sticky-cta { right: 20px; bottom: 20px; }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-      
-          <div class="share-wrapper">
-        <i class="fa fa-share-alt share" id="shareButton"></i>
-        <ul class="social" id="shareMenu">
-            <li><a href="#" onclick="share('whatsapp')" title="Share on WhatsApp"><i class="fab fa-whatsapp whatsapp"></i></a></li>
-            <li><a href="#" onclick="share('facebook')" title="Share on Facebook"><i class="fab fa-facebook facebook"></i></a></li>
-            <li><a href="#" onclick="share('instagram')" title="Share on Instagram"><i class="fab fa-instagram instagram"></i></a></li>
-            <li><a href="#" onclick="share('email')" title="Share via Email"><i class="fas fa-envelope email"></i></a></li>
-            <li><a href="#" onclick="share('copy')" title="Copy Link"><i class="fas fa-link copy"></i></a></li>
-        </ul>
+    <div id="progress-bar"></div>
+
+    <div class="sticky-cta">
+        <a href="raj-kumar-resume.pdf" target="_blank" aria-label="Download Resume PDF" title="Download Resume">
+            <i class="fas fa-file-download"></i>
+        </a>
+        <a id="scrollToTopBtn" href="#top" aria-label="Scroll to Top" title="Back to Top">
+            <i class="fas fa-arrow-up"></i>
+        </a>
     </div>
 
-      
-      
-      
-      <div class="center-box-custom">
-        <!-- START Box -->
-        <div class="animated-border-box-glow-custom"></div>
-        <div class="animated-border-box-custom">
-          <!-- Inside the Box -->
-          <div class="image-container-custom">
-            <img src="https://i.ibb.co/9qn0hgH/IMG-20240624-214310-729.jpg" alt="Profile Picture" class="profile-img-custom">
-          </div>
+    <nav class="navbar" id="mainNav">
+        <div class="container nav-content">
+            <a href="#" class="logo" aria-label="Home">R.K. <span style="font-size: 0.6em; font-weight: 300;">PRO</span></a>
+            <div style="display: none;">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#connect">Connect</a>
+            </div>
         </div>
-        <!-- END -->
-      </div>
-      
-      
-        <h1>Raj Kumar</h1>
-        <p class="bio">I am Raj Kumar, a motivated fresher
-        skilled in computer applications and
-        digital marketing. Eager to contribute
-        my creativity and dedication to your
-        organization</p>
-       <!-- Social Icons -->
-       <div class="socialiconraj-menu">
-         <ul>
-           <li><a href="https://github.com/sanketbodke" target="blank"><i class="fab fa-github"></i></a></li>
-           <li><a href="https://www.instagram.com/imsanketbodke/" target="blank"><i class="fab fa-instagram"></i></a></li>
-           <li><a href="https://www.linkedin.com/in/sanket-bodake-995b5b205/" target="blank"><i class="fab fa-linkedin-in"></i></a></li>
-           <li><a href="https://codepen.io/sanketbodke" target="blank"><i class="fab fa-codepen"></i></a></li>
-         </ul>
-       </div>
-       
-        <ul class="links">
-            <li><a href="https://www.instagram.com/your_instagram_username/" class="button"><i class="fab fa-instagram icon"></i> Instagram</a></li>
-            <li><a href="https://www.facebook.com/your_facebook_username/" class="button"><i class="fab fa-facebook icon"></i> Facebook</a></li>
-            <li><a href="https://api.whatsapp.com/send?phone=your_phone_number" class="button"><i class="fab fa-whatsapp icon"></i> WhatsApp</a></li>
-            <li><a href="#" class="button" onclick="openModal()"><i class="fas fa-file-alt icon"></i> Resume</a></li>
-            <!-- Add more links with icons as needed -->
-        </ul>
-        
-        
-    </div>
+    </nav>
 
-    <!-- Modal -->
-    <div id="resumeModal" class="modal">
+    <main>
+        <section class="hero-section" id="top">
+            <div class="container hero-container">
+                <div class="hero-content" data-aos="fade-right" data-aos-duration="1200">
+                    <span style="font-size: 1.1em; margin-bottom: 5px; display: block; color: #c0d8ff; font-weight: 300;">Hello, I am a Highly Motivated</span>
+                    <h1><span class="highlight">Raj Kumar</span></h1>
+                    <h2 class="hero-role-text">Technology & Digital Strategy Specialist</h2>
+                    <p style="font-size: 1em; margin-top: 0; color: #e0e0e0; font-weight: 300; max-width: 90%;">
+                        Bridging <strong>robust technical execution</strong> (Computer Applications) with <strong>strategic market presence</strong> (Digital Marketing). Ready to deliver immediate and measurable value.
+                    </p>
+                    <button class="btn-primary" onclick="openContactModal()">
+                        <i class="fas fa-paper-plane"></i> Hire Me Now
+                    </button>
+                </div>
+                
+                <div class="profile-image-container" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="300">
+                    <img 
+                        src="https://i.postimg.cc/YC8QL46w/IMG-20251017-222623.jpg" 
+                        alt="Professional portrait of Raj Kumar, Computer Applications and Digital Marketing Specialist." 
+                        class="profile-image"
+                    >
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section" style="background-color: var(--bg-light);">
+            <div class="container">
+                <h2 data-aos="fade-up">My Professional Philosophy</h2>
+                
+                <div class="about-text" data-aos="zoom-in-up" data-aos-delay="200">
+                    <p>
+                        I am dedicated to leveraging modern tech and creative strategies. My dual expertise in <strong>Computer Applications</strong> ensures operations are <strong>efficient and secure</strong>, while my <strong>Digital Marketing</strong> knowledge guarantees maximum market visibility and engagement. I believe in being a proactive problem-solver and a rapid learner.
+                    </p>
+                    <p>
+                        <strong>My goal is not just to meet expectations, but to consistently exceed them.</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 data-aos="fade-down">Key Projects & Experience</h2>
+                
+                <div class="projects-grid">
+                    
+                    <div class="project-card" data-aos="flip-left">
+                        <div class="project-content">
+                            <span class="project-tag">Data Management</span>
+                            <h3>Advanced Sales Reporting System</h3>
+                            <p>Developed complex Excel dashboards with Pivot Tables and VLOOKUP for real-time sales performance tracking and quarterly forecasting, leading to a 15% improvement in stock efficiency.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-aos="flip-left" data-aos-delay="100">
+                        <div class="project-content">
+                            <span class="project-tag" style="background: var(--secondary-color);">Digital Strategy</span>
+                            <h3>Local SEO Optimization Campaign</h3>
+                            <p>Managed an 8-week local SEO campaign, focusing on Google My Business and local directories, resulting in a 30% increase in local traffic and phone inquiries.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-aos="flip-left" data-aos-delay="200">
+                        <div class="project-content">
+                            <span class="project-tag">Financial Ops</span>
+                            <h3>Automated GST & Tally Entry</h3>
+                            <p>Streamlined financial entry process in Tally for quarterly GST filing, reducing data entry errors by 90% and cutting preparation time from 3 days to 4 hours.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 50px;" data-aos="fade-up" data-aos-delay="300">
+                     <button class="btn-primary" onclick="openContactModal()">
+                        Discuss Your Project <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section" style="background-color: var(--bg-light);">
+            <div class="container">
+                <h2 data-aos="fade-down">Core Service Domains</h2>
+                
+                <div class="tabs-container" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" onclick="openTab(event, 'compApp')">
+                            <i class="fas fa-code"></i> Computer Applications
+                        </button>
+                        <button class="tab-button" onclick="openTab(event, 'digitalMkt')">
+                            <i class="fas fa-bullseye"></i> Digital Marketing
+                        </button>
+                    </div>
+
+                    <div id="compApp" class="tab-content active">
+                        <h3>Foundation for Operational Excellence</h3>
+                        <div class="service-point">
+                            <i class="fas fa-check-circle"></i> 
+                            <p><strong>Advanced MS Office:</strong> Expert in data analysis, reporting via <strong>Excel</strong>, and professional presentation creation with PowerPoint.</p>
+                        </div>
+                        <div class="service-point">
+                            <i class="fas fa-check-circle"></i> 
+                            <p><strong>Tally & ERP:</strong> Proficient in financial accounting, inventory management, and <strong>GST compliance</strong> for reliable record-keeping.</p>
+                        </div>
+                        <div class="service-point">
+                            <i class="fas fa-check-circle"></i> 
+                            <p><strong>Security & Integrity:</strong> Knowledge of data backup, basic IT security protocols, and ethical technology usage.</p>
+                        </div>
+                    </div>
+
+                    <div id="digitalMkt" class="tab-content">
+                        <h3>Strategies for Market Dominance</h3>
+                        <div class="service-point">
+                            <i class="fas fa-check-circle"></i> 
+                            <p><strong>Search Engine Optimization (SEO):</strong> Skilled in on-page, off-page, and technical SEO to <strong>increase organic reach</strong> and visibility.</p>
+                        </div>
+                        <div class="service-point">
+                            <i class="fas fa-check-circle"></i> 
+                            <p><strong>Social Media Marketing (SMM):</strong> Developing engaging content and managing campaigns across platforms for <strong>lead generation</strong> and brand awareness.</p>
+                        </div>
+                        <div class="service-point">
+                            <i class="fas fa-check-circle"></i> 
+                            <p><strong>Analytics & Reporting:</strong> Ability to track key performance indicators (KPIs) and provide actionable data-driven reports.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section" style="background-color: #e6f0f7;">
+            <div class="container">
+                <h2 data-aos="fade-down">Technical Proficiency</h2>
+                
+                <div class="skill-list" data-aos="fade-up" data-aos-delay="100">
+                    
+                    <div class="skill-item" data-skill-level="90">
+                        <h4>MS Office & Data Management <span class="skill-percentage">90%</span></h4>
+                        <div class="progress-bar-container"><div class="progress-bar" id="skill1"></div></div>
+                    </div>
+
+                    <div class="skill-item" data-skill-level="80">
+                        <h4>Tally & Financial Applications <span class="skill-percentage">80%</span></h4>
+                        <div class="progress-bar-container"><div class="progress-bar" id="skill2"></div></div>
+                    </div>
+
+                    <div class="skill-item" data-skill-level="75">
+                        <h4>Digital Marketing & SEO/SMM <span class="skill-percentage">75%</span></h4>
+                        <div class="progress-bar-container"><div class="progress-bar" id="skill3"></div></div>
+                    </div>
+
+                    <div class="skill-item" data-skill-level="85">
+                        <h4>Problem Solving & Communication <span class="skill-percentage">85%</span></h4>
+                        <div class="progress-bar-container"><div class="progress-bar" id="skill4"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="connect" class="section">
+            <div class="container">
+                <h2 data-aos="fade-down">Let's Connect and Collaborate</h2>
+                
+                <div class="social-links" data-aos="zoom-in" data-aos-delay="200">
+                    <a href="https://www.linkedin.com/in/your_profile" target="_blank" aria-label="LinkedIn Profile" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:your_email@example.com" aria-label="Email Contact" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://wa.me/91XXXXXXXXXX" target="_blank" aria-label="WhatsApp Contact" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/your_instagram_id" target="_blank" aria-label="Instagram Profile" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024. Raj Kumar. All Rights Reserved. | <strong>Crafted with Dedication & Precision.</strong></p>
+        </div>
+    </footer>
+
+    <div id="contactModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Resume</h2>
-            <img src="https://i.imghippo.com/files/imbqx1719679871.png" alt="Resume" class="resume-image">
-            <!-- Add any additional content or description here -->
-           
- <!-- Add any additional content or description here -->
-            <!-- <p>Insert your resume content here...</p> -->
-            <!-- Example link to a PDF -->
-            <!-- <a href="your_resume.pdf" target="_blank">Download Resume</a> -->
+            <span class="close-btn" onclick="closeContactModal()">&times;</span>
+            <h3>Start a Conversation 👋</h3>
+            <p>Tell me about your project or opportunity, and I'll respond within 24 hours.</p>
+            <form action="mailto:your_email@example.com" method="post" enctype="text/plain">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Your Message / Project Scope:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit" class="btn-primary" style="margin-top: 25px;">
+                    Send Message <i class="fas fa-angle-right"></i>
+                </button>
+            </form>
         </div>
     </div>
 
-    
-    <div class="copyright">
-        &copy; 2024 Raj Kumar. All rights reserved.
-    </div>
-    
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Modal functions
-        function openModal() {
-            document.getElementById("resumeModal").style.display = "flex";
+        // 1. Initialize AOS (Unchanged)
+        AOS.init({
+            duration: 900, 
+            easing: 'ease-out-quad', 
+            once: true,     
+        });
+
+        // 2. DYNAMIC COLOR PALETTE (Expanded)
+        const colorPalettes = [
+            // Palette 1: Professional Blue/Teal (Default)
+            { primary: '#0077b6', secondary: '#48cae4', text: '#1c2e36', light: '#f9fcff', dark: '#122938' },
+            // Palette 2: Modern Green/Mint
+            { primary: '#008080', secondary: '#3cb371', text: '#2f4f4f', light: '#f5fff5', dark: '#004d4d' },
+            // Palette 3: Vibrant Orange/Red
+            { primary: '#FF6347', secondary: '#FFD700', text: '#402e2e', light: '#fff8f2', dark: '#662200' },
+            // Palette 4: Elegant Violet/Pink
+            { primary: '#8a2be2', secondary: '#da70d6', text: '#3c244c', light: '#fcf5ff', dark: '#4b0082' },
+            // NEW Palette 5: Deep Ocean Blue
+            { primary: '#034f84', secondary: '#56a3a6', text: '#0e1d2c', light: '#f0f8ff', dark: '#013243' },
+            // NEW Palette 6: Earthy Gold/Brown
+            { primary: '#b4884f', secondary: '#e7c093', text: '#5c4033', light: '#fffaf0', dark: '#3a271c' },
+        ];
+
+        function setRandomPalette() {
+            const randomIndex = Math.floor(Math.random() * colorPalettes.length);
+            const palette = colorPalettes[randomIndex];
+            
+            const root = document.documentElement;
+            root.style.setProperty('--primary-color', palette.primary);
+            root.style.setProperty('--secondary-color', palette.secondary);
+            root.style.setProperty('--text-color', palette.text);
+            root.style.setProperty('--bg-light', palette.light);
+            root.style.setProperty('--bg-dark', palette.dark);
+
+            // Update gradients
+            root.style.setProperty('--highlight-gradient', `linear-gradient(90deg, ${palette.secondary}, ${palette.primary})`);
+            root.style.setProperty('--progress-gradient', `linear-gradient(90deg, ${palette.secondary}, ${palette.primary})`);
+        }
+        setRandomPalette();
+
+        // 3. Header & Scroll Indicator & Skill Animation Logic (IMPROVED)
+        const nav = document.getElementById('mainNav');
+        const progressBar = document.getElementById('progress-bar');
+        const skillSection = document.getElementById('skills');
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn'); // NEW
+        let skillsAnimated = false; 
+
+        function animateSkills() {
+            if (skillsAnimated) return; 
+
+            const skillItems = document.querySelectorAll('.skill-item');
+            skillItems.forEach(item => {
+                const level = item.getAttribute('data-skill-level');
+                const bar = item.querySelector('.progress-bar');
+                bar.style.width = level + '%';
+            });
+            skillsAnimated = true;
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+
+            // Header Scroll Effect
+            if (scrollPos > 100) { 
+                nav.classList.add('scrolled');
+                // NEW: Show Scroll to Top button after scrolling down
+                scrollToTopBtn.classList.add('show');
+            } else {
+                nav.classList.remove('scrolled');
+                // NEW: Hide Scroll to Top button at the top
+                scrollToTopBtn.classList.remove('show');
+            }
+
+            // PROGRESS BAR LOGIC (Unchanged)
+            const documentHeight = document.documentElement.scrollHeight;
+            const windowHeight = window.innerHeight;
+            const scrollableHeight = documentHeight - windowHeight;
+            
+            if (scrollableHeight > 0) {
+                const progress = (scrollPos / scrollableHeight) * 100;
+                progressBar.style.width = progress + '%';
+            }
+
+            // SKILL ANIMATION TRIGGER (Unchanged)
+            if (skillSection) {
+                const rect = skillSection.getBoundingClientRect();
+                // Trigger when skill section comes into view (75% down the viewport)
+                if (rect.top < windowHeight * 0.75 && rect.bottom > 0 && !skillsAnimated) {
+                    animateSkills();
+                }
+            }
+        });
+        
+        // 4. Tab Switching Logic for Services Section (Unchanged)
+        function openTab(evt, tabName) {
+            let i, tabcontent, tabbuttons;
+
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+                tabcontent[i].style.display = "none";
+            }
+
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
         
-        function closeModal() {
-            document.getElementById("resumeModal").style.display = "none";
+        // Initial Tab Activation (Unchanged)
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstButton = document.querySelector('.tab-button');
+            if(firstButton) {
+                document.getElementById('compApp').style.display = "block";
+                document.getElementById('compApp').classList.add("active");
+                firstButton.classList.add("active");
+            }
+        });
+
+        // 5. Contact Modal Functions (NEW)
+        const contactModal = document.getElementById('contactModal');
+
+        function openContactModal() {
+            contactModal.style.display = "block";
+        }
+
+        function closeContactModal() {
+            contactModal.style.display = "none";
+        }
+
+        // Close the modal if the user clicks anywhere outside of it
+        window.onclick = function(event) {
+            if (event.target == contactModal) {
+                contactModal.style.display = "none";
+            }
         }
     </script>
-     
-    <script>
-    document.getElementById('shareButton').addEventListener('click', function() {
-        this.classList.toggle('active');
-        document.getElementById('shareMenu').classList.toggle('active');
-    });
-
-    function share(platform) {
-        var url = encodeURIComponent(window.location.href);
-        var text = encodeURIComponent("Check out Raj Kumar's amazing profile! A fitness enthusiast, tech geek, and explorer sharing valuable insights and experiences.");
-        var shareUrl = '';
-
-        switch (platform) {
-            case 'whatsapp':
-                shareUrl = 'https://api.whatsapp.com/send?text=' + text + '%20' + url;
-                break;
-            case 'facebook':
-                shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url + '&quote=' + text;
-                break;
-            case 'instagram':
-                alert('Instagram does not support direct URL sharing via web. Please share manually.');
-                return;
-            case 'email':
-                shareUrl = 'mailto:?subject=' + text + '&body=Check out Raj Kumar\'s profile: ' + url;
-                break;
-            case 'copy':
-                navigator.clipboard.writeText(window.location.href).then(function() {
-                    alert('Link copied to clipboard!');
-                }, function(err) {
-                    alert('Failed to copy link: ', err);
-                });
-                return;
-            default:
-                return;
-        }
-
-        window.open(shareUrl, '_blank');
-    }
-</script>
-
 </body>
 </html>
